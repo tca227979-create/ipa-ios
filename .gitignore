@@ -3,7 +3,7 @@
 Thumbs.db
 
 # Xcode
-build/
+/build/
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
 !*.xcodeproj/xcshareddata/
@@ -30,5 +30,4 @@ xcuserdata/
 # Large static libraries (split into .part* files <= 40MB)
 Libraries/libiPhone-lib.a
 Libraries/libil2cpp.a
-
 
