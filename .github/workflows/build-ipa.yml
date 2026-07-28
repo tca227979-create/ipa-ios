@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-ipa:
-    runs-on: macos-latest
+    runs-on: macos-14
 
     steps:
       - name: Checkout repository
@@ -17,17 +17,15 @@ jobs:
 
       - name: Reassemble Large Static Libraries
         run: |
+          echo "Reassembling libiPhone-lib.a..."
           cat Libraries/libiPhone-lib.a.part01 Libraries/libiPhone-lib.a.part02 Libraries/libiPhone-lib.a.part03 Libraries/libiPhone-lib.a.part04 Libraries/libiPhone-lib.a.part05 > Libraries/libiPhone-lib.a
+          echo "Reassembling libil2cpp.a..."
           cat Libraries/libil2cpp.a.part01 Libraries/libil2cpp.a.part02 > Libraries/libil2cpp.a
           ls -lh Libraries/*.a
 
-      - name: Set up Xcode
-        run: |
-          sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
-          xcodebuild -version
-
       - name: Build Xcode Project (Unsigned)
         run: |
+          xcodebuild -version
           xcodebuild -project Unity-iPhone.xcodeproj \
                      -scheme Unity-iPhone \
                      -configuration Release \
